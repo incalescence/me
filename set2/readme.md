@@ -1,1 +1,1 @@
-TODO: Reflect on what you learned this week and what is still unclear.
+This week, in the lecture we went through many tools used in Python programming from declaring variables to data structures such as lists and dictionaries. Furthermore, we went through programming methods such as if statements and while loops. 

@@ -153,7 +153,7 @@ def loops_4():
     for i in range(10):
         inner_list = []
         for j in range(10):
-            inner_list.append(j)
+            inner_list.append(str(j))
         outer_list.append(inner_list)
     return outer_list
 

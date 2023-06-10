@@ -12,7 +12,7 @@ In each function, where you see:
 
 replace None with the actual answer.
 
-Remember, none of these are trick questions. If it seems like an incredibly 
+Remember, none of these are trick questions. If it seems like an incredibly
 obvious answer, that's because it is!
 """
 

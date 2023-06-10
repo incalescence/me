@@ -2,9 +2,9 @@
 
 This file doesn't run yet. Go through it and change it until it runs.
 
-Look at the wiggly lines. Pay attention to the colours fix the first error, and 
-it might fix errors that come after. We'll often talk about upstream (things 
-that happen before) and downstream (things that happen after). Python reads the 
+Look at the wiggly lines. Pay attention to the colours fix the first error, and
+it might fix errors that come after. We'll often talk about upstream (things
+that happen before) and downstream (things that happen after). Python reads the
 file from top to bottom.
 """
 
@@ -27,11 +27,11 @@ def set2exercise2(): # this is semi-right
     return secret_word
 
 
-if __name__ == "__main__":  
-    #        ⟰-- we use = for asignment, 
-    # and == for checking if things are equal, 
+if __name__ == "__main__":
+    #        ⟰-- we use = for asignment,
+    # and == for checking if things are equal,
     # this isn't either!
     hero = set2exercise2()
     print(hero)
-    # Say what this prints in your readme file for this week, along with any 
+    # Say what this prints in your readme file for this week, along with any
     # comments about what you learnt by doing this exercise

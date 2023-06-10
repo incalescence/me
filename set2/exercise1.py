@@ -8,8 +8,8 @@ TODO: execute that line and write what actually happened next to it.
 
 See example for first print statement.
 
-TODO: Start a list of important programming vocabulary in your readme.md for 
-this week. E.g. the word "calling" means something in a programming context, 
+TODO: Start a list of important programming vocabulary in your readme.md for
+this week. E.g. the word "calling" means something in a programming context,
 what does it mean?
 """
 import platform
@@ -19,16 +19,16 @@ print("hello! Let's get started")  # it printed "hello! Let's get started"
 
 some_words = ["what", "does", "this", "line", "do", "?"]
 
-# I think this will print every for in some word 
+# I think this will print every for in some word
 for word in some_words:
     print(word) # this prints every word in some_words each on a new line
 
-# I think this will print every word in the list some_words 
+# I think this will print every word in the list some_words
 for x in some_words:
     print(x) # this prints every word in some_words each on a new line
 
 # I think this will print the entire list of some_words
-print(some_words) # this prints the entire list on one line 
+print(some_words) # this prints the entire list on one line
 
 # I think this will print if the size of the list some_words contains 3 or more values
 if len(some_words) > 3:

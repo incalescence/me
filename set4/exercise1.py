@@ -1,6 +1,5 @@
 """All about IO."""
 
-
 import json
 import os
 import requests
@@ -9,14 +8,14 @@ import sys
 
 # Handy constants
 LOCAL = os.path.dirname(os.path.realpath(__file__))  # the context of this file
-CWD = os.getcwd()  # The curent working directory
+CWD = os.getcwd()  # The current working directory
 if LOCAL != CWD:
     print(
         f"""
     Be careful that your relative paths are
     relative to where you think they are
     LOCAL: {LOCAL}
-    CWD: "CWD
+    CWD: {CWD}
     """
     )
 
@@ -28,19 +27,27 @@ def get_some_details():
     Read it in and use the json library to convert it to a dictionary.
     Return a new dictionary that just has the last name, password, and the
     number you get when you add the postcode to the id-value.
-    TIP: Make sure that you add the numbers, not concatinate the strings.
+    TIP: Make sure that you add the numbers, not concatenate the strings.
          E.g. 2000 + 3000 = 5000 not 20003000
     TIP: Keep a close eye on the format you get back. JSON is nested, so you
          might need to go deep. E.g to get the name title you would need to:
          data["results"][0]["name"]["title"]
          Look out for the type of brackets. [] means list and {} means
-         dictionary, you'll need integer indeces for lists, and named keys for
+         dictionary, you'll need integer indices for lists, and named keys for
          dictionaries.
     """
     json_data = open(LOCAL + "/lazyduck.json").read()
 
     data = json.loads(json_data)
-    return {"lastName": None, "password": None, "postcodePlusID": None}
+    results = data.get("results")
+    result = results[0]
+
+    last_name = result.get("name").get("last")
+    password = result.get("login").get("password")
+    postcode = int(result.get("location").get("postcode"))
+    id_value = int(result.get("id").get("value"))
+
+    return {"lastName": last_name, "password": password, "postcodePlusID": postcode+id_value}
 
 
 def wordy_pyramid():
@@ -77,12 +84,27 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &wordlength=
     """
+    URL = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength="
     pyramid = []
+    word_length = 3;
+
+    while word_length <= 20:
+        r = requests.get(URL + str(word_length))
+        if r.status_code == 200:
+            pyramid.append(r.text)
+        word_length += 2
+
+    word_length = 20
+    while word_length >= 3:
+        r = requests.get(URL + str(word_length))
+        if r.status_code == 200:
+            pyramid.append(r.text)
+        word_length -= 2
 
     return pyramid
 
 
-def pokedex(low=1, high=5):
+def pokedex(low, high):
     """Return the name, height and weight of the tallest pokemon in the range low to high.
 
     Low and high are the range of pokemon ids to search between.
@@ -90,20 +112,31 @@ def pokedex(low=1, high=5):
     (a working example is filled in below).
     Parse the json and extract the values needed.
 
-    TIP: reading json can someimes be a bit confusing. Use a tool like
+    TIP: reading json can sometimes be a bit confusing. Use a tool like
          http://www.jsoneditoronline.org/ to help you see what's going on.
     TIP: these long json accessors base["thing"]["otherThing"] and so on, can
          get very long. If you are accessing a thing often, assign it to a
          variable and then future access will be easier.
     """
-    id = 5
-    url = f"https://pokeapi.co/api/v2/pokemon/{id}"
-    r = requests.get(url)
-    if r.status_code is 200:
-        the_json = json.loads(r.text)
 
-    return {"name": None, "weight": None, "height": None}
-
+    pokemon = {}
+    for id in range(low, high):
+        url = f"https://pokeapi.co/api/v2/pokemon/{id}"
+        r = requests.get(url)
+        if r.status_code == 200:
+            the_json = json.loads(r.text)
+            name = the_json.get("name")
+            weight = the_json.get("weight")
+            height = the_json.get("height")
+            pokemon[id]={"name": name, "weight": weight, "height": height}
+    highest_height = 0
+    for id in pokemon:
+        height = pokemon[id].get("height")
+        if height > highest_height:
+            highest_height = height
+    for id in pokemon:
+        if pokemon[id].get("height") == highest_height:
+            return {"name": pokemon[id].get("name"), "weight": pokemon[id].get("weight"), "height": pokemon[id].get("height")}
 
 def diarist():
     """Read gcode and find facts about it.
@@ -122,7 +155,14 @@ def diarist():
 
     NOTE: this function doesn't return anything. It has the _side effect_ of modifying the file system
     """
-    pass
+    count = 0
+    with open("set4/Trispokedovetiles(laser).gcode", "r", encoding="utf-8") as input:
+        lines = input.readlines()
+        for line in lines:
+            if "M10 P1" in line:
+                count += 1
+    with open("set4/lasers.pew", "w", encoding="utf-8") as output:
+        output.write(str(count))
 
 
 if __name__ == "__main__":
@@ -131,7 +171,7 @@ if __name__ == "__main__":
     wp = wordy_pyramid()
     [print(f"{word} {len(word)}") for word in wp]
 
-    print(pokedex(low=3, high=7))
+    print(pokedex(low=70, high=80))
 
     diarist()
 

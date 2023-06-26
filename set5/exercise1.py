@@ -33,17 +33,15 @@ def wordy_pyramid():
     for i in range(3, 21, 2):
         url = baseURL.format(length=i)
         r = requests.get(url)
-        if r.status_code is 200:
-            message = r.text
-            pyramid_list.append(message)
+        if r.status_code == 200:
+            pyramid_list.append(r.text)
         else:
             print("failed a request", r.status_code, i)
     for i in range(20, 3, -2):
         url = baseURL.format(length=i)
         r = requests.get(url)
-        if r.status_code is 200:
-            message = r.text
-            pyramid_list.append(message)
+        if r.status_code == 200:
+            pyramid_list.append(r.text)
         else:
             print("failed a request", r.status_code, i)
 
@@ -51,11 +49,20 @@ def wordy_pyramid():
 
 
 def get_a_word_of_length_n(length):
-    pass
+    pyramid = wordy_pyramid()
+    for word in pyramid:
+        if len(word) == length:
+            return word
 
 
 def list_of_words_with_lengths(list_of_lengths):
-    pass
+    pyramid = wordy_pyramid()
+    list_of_words = []
+    for length in list_of_lengths:
+        for word in pyramid:
+            if len(word) == length:
+                list_of_words.append(word)
+    return list_of_words
 
 
 if __name__ == "__main__":

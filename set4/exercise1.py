@@ -47,7 +47,11 @@ def get_some_details():
     postcode = int(result.get("location").get("postcode"))
     id_value = int(result.get("id").get("value"))
 
-    return {"lastName": last_name, "password": password, "postcodePlusID": postcode+id_value}
+    return {
+        "lastName": last_name,
+        "password": password,
+        "postcodePlusID": postcode + id_value,
+    }
 
 
 def wordy_pyramid():
@@ -86,7 +90,7 @@ def wordy_pyramid():
     """
     URL = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength="
     pyramid = []
-    word_length = 3;
+    word_length = 3
 
     while word_length <= 20:
         r = requests.get(URL + str(word_length))
@@ -128,7 +132,7 @@ def pokedex(low, high):
             name = the_json.get("name")
             weight = the_json.get("weight")
             height = the_json.get("height")
-            pokemon[id]={"name": name, "weight": weight, "height": height}
+            pokemon[id] = {"name": name, "weight": weight, "height": height}
     highest_height = 0
     for id in pokemon:
         height = pokemon[id].get("height")
@@ -136,7 +140,12 @@ def pokedex(low, high):
             highest_height = height
     for id in pokemon:
         if pokemon[id].get("height") == highest_height:
-            return {"name": pokemon[id].get("name"), "weight": pokemon[id].get("weight"), "height": pokemon[id].get("height")}
+            return {
+                "name": pokemon[id].get("name"),
+                "weight": pokemon[id].get("weight"),
+                "height": pokemon[id].get("height"),
+            }
+
 
 def diarist():
     """Read gcode and find facts about it.

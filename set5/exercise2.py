@@ -23,15 +23,15 @@ def italian_dinner(axiom="tomatoes", guard=6):
     functions that use as input the output of their own results on earlier
     operations.
 
-    The most general way of characterising a production system is to see it as
-    a formal language based on symbol manipulation. They habe much in common
+    The most general way of characterizing a production system is to see it as
+    a formal language based on symbol manipulation. They have much in common
     with formal systems in logic in that:
         1.  they start with an axiom, which is given of the formal system;
-        2.  there are a set of statements inthe formal system which can be
-            thought of as theroums of the system; and
+        2.  there are a set of statements in the formal system which can be
+            thought of as theorems of the system; and
         3.  there are a set of rules for transforming any statement which is
             part of the formal system into any other using replacement rules.
-    In the itallian dinner, teh axiom is of course _tomatoes_
+    In the Italian dinner, teh axiom is of course _tomatoes_
 
     Note that in order for this to work, we need to have at least one word in
     the right-hand side that matches one of the words in the left-hand side.
@@ -84,9 +84,9 @@ def abba(source="abba", guard=3):
 
     Modify the rules to map from:
 
-                   abba
+                abba
                     to
-               bbaaobaobbba
+                bbaaobaobbba
                     to
     aobaobbbabbaoaaobbbaoaaobaobaobbba
                 and so on...
@@ -146,7 +146,7 @@ def draw_koch(drawing_method, steps_deep=4):
 def square_koch(t, order, size):
     r"""Draw a koch curve with a square rather than a triangular point.
 
-           _
+            _
     e.g. _| |_ rather than _/\_
 
     Leave the turtle facing the same direction.

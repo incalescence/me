@@ -76,7 +76,7 @@ def italian_rules(word):
         return word
 
 
-def abba(source="abba", guard=3):
+def abba(source="b", guard=1):
     """Recursively replace letters according to the rules.
 
     This function takes a seed string, e.g. "abba" and replaces each letter in
@@ -86,9 +86,9 @@ def abba(source="abba", guard=3):
 
                 abba
                     to
-                bbaaobaobbba
+                bba aob aob bba
                     to
-    aobaobbbabbaoaaobbbaoaaobaobaobbba
+    aob aob bba bba oa aob bba oa aob aob aob bba
                 and so on...
     """
 
@@ -100,16 +100,23 @@ def abba(source="abba", guard=3):
         Hint: when guard == -1 return the letter.
         """
         if letter == "a":
-            return "a"
+            return "bba"
         elif letter == "b":
-            return "b"
+            return "aob"
         elif letter == "o":
-            return "o"
+            return "oa"
         else:
             return letter
 
     # write the rest of the function here
-    pass
+    new_string = ""
+    for letter in source:
+        new_string += apply_rules(letter)
+    guard -= 1
+    if guard > 0:
+        return abba(new_string, guard)
+    else:
+        return new_string
 
 
 def koch(t, order, size):
@@ -174,5 +181,5 @@ if __name__ == "__main__":
     print(draw_koch(drawing_method=square_koch, steps_deep=4))
     print(draw_koch(drawing_method=koch, steps_deep=2))
     print("AB:", abba())
-    print("ID:", str(italian_dinner()))
+    # print("ID:", str(italian_dinner()))
     pass

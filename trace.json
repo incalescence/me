@@ -39,19 +39,19 @@
   },
   {
     "of_total": 15,
-    "mark": 10,
+    "mark": 14,
     "results": [
       {
         "value": 1,
-        "name": "exercise 1: get_a_word_of_length_n iodic"
+        "name": "exercise 1: get_a_word_of_length_n raash"
       },
       {
         "value": 1,
-        "name": "exercise 1: get_a_word_of_length_n laagered"
+        "name": "exercise 1: get_a_word_of_length_n iotacist"
       },
       {
         "value": 1,
-        "name": "exercise 1: get_a_word_of_length_n kaas"
+        "name": "exercise 1: get_a_word_of_length_n each"
       },
       {
         "value": 1,
@@ -78,19 +78,19 @@
         "name": "Exercise 1: wordy_pyramid still works"
       },
       {
-        "value": 0,
+        "value": 1,
         "name": "exercise 2: abba baaab\u21e8bbaoaaobaobaobbbaaobaobbbaaobaobbbabbaoaaob"
       },
       {
-        "value": 0,
+        "value": 1,
         "name": "exercise 2: abba b\u21e8bbaoaaob"
       },
       {
-        "value": 0,
+        "value": 1,
         "name": "exercise 2: abba roof\u21e8roabbaoabbaf"
       },
       {
-        "value": 0,
+        "value": 1,
         "name": "exercise 2: abba hell\u21e8hell"
       },
       {

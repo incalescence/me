@@ -39,19 +39,19 @@
   },
   {
     "of_total": 15,
-    "mark": 14,
+    "mark": 15,
     "results": [
       {
         "value": 1,
-        "name": "exercise 1: get_a_word_of_length_n raash"
+        "name": "exercise 1: get_a_word_of_length_n yodel"
       },
       {
         "value": 1,
-        "name": "exercise 1: get_a_word_of_length_n iotacist"
+        "name": "exercise 1: get_a_word_of_length_n sabadine"
       },
       {
         "value": 1,
-        "name": "exercise 1: get_a_word_of_length_n each"
+        "name": "exercise 1: get_a_word_of_length_n yobi"
       },
       {
         "value": 1,
@@ -94,7 +94,7 @@
         "name": "exercise 2: abba hell\u21e8hell"
       },
       {
-        "value": 0,
+        "value": 1,
         "name": "exercise 2: Koch _|-|_"
       },
       {

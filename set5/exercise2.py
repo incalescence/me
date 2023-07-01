@@ -108,7 +108,6 @@ def abba(source="b", guard=1):
         else:
             return letter
 
-    # write the rest of the function here
     new_string = ""
     for letter in source:
         new_string += apply_rules(letter)
@@ -142,7 +141,7 @@ def draw_koch(drawing_method, steps_deep=4):
     https://docs.python.org/3/library/turtle.html
     """
     raphael = turtle.Turtle()
-    raphael.speed(1000)
+    raphael.speed(100)
     raphael.penup()
     raphael.goto(-300, 0)
     raphael.pendown()
@@ -160,9 +159,19 @@ def square_koch(t, order, size):
 
     """
     trace = ""
-    # write the rest of the function here.
+    if order == 0:  # The base case is just a straight line
+        t.forward(size)
+    else:
+        trace += square_koch(t, order - 1, size / 3)  # Go 1/3 of the way
+        t.left(90)
+        trace += square_koch(t, order - 1, size / 3)
+        t.right(90)
+        trace += square_koch(t, order - 1, size / 3)
+        t.right(90)
+        trace += square_koch(t, order - 1, size / 3)
+        t.left(90)
+        trace += square_koch(t, order - 1, size / 3)
     return str(order) + trace
-    pass
 
 
 def draw_square(steps=4):
@@ -178,8 +187,8 @@ def draw_pointy(steps=4):
 if __name__ == "__main__":
     print(draw_koch(drawing_method=square_koch, steps_deep=2))
     print(draw_koch(drawing_method=square_koch, steps_deep=3))
-    print(draw_koch(drawing_method=square_koch, steps_deep=4))
-    print(draw_koch(drawing_method=koch, steps_deep=2))
-    print("AB:", abba())
+    # print(draw_koch(drawing_method=square_koch, steps_deep=4))
+    # print(draw_koch(drawing_method=koch, steps_deep=2))
+    # print("AB:", abba())
     # print("ID:", str(italian_dinner()))
     pass

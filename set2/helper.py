@@ -1,6 +1,6 @@
 """
-This file has some helpful functions that are reused in other files. You don't 
-need to look in this file, but you're welcome to if you want to see some more 
+This file has some helpful functions that are reused in other files. You don't
+need to look in this file, but you're welcome to if you want to see some more
 python in action.
 """
 

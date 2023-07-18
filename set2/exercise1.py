@@ -21,18 +21,20 @@ some_words = ["what", "does", "this", "line", "do", "?"]
 
 # I think this will print every for in some word
 for word in some_words:
-    print(word) # this prints every word in some_words each on a new line
+    print(word)  # this prints every word in some_words each on a new line
 
 # I think this will print every word in the list some_words
 for x in some_words:
-    print(x) # this prints every word in some_words each on a new line
+    print(x)  # this prints every word in some_words each on a new line
 
 # I think this will print the entire list of some_words
-print(some_words) # this prints the entire list on one line
+print(some_words)  # this prints the entire list on one line
 
 # I think this will print if the size of the list some_words contains 3 or more values
 if len(some_words) > 3:
-    print("some_words contains more than 3 words") # This prints "some_words contains more than 3 words" if the size of some_words is greater than 3.
+    print(
+        "some_words contains more than 3 words"
+    )  # This prints "some_words contains more than 3 words" if the size of some_words is greater than 3.
 
 
 def usefulFunction():

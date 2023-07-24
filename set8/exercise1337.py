@@ -92,8 +92,7 @@ def fizz_buzz() -> List:
     """Do the fizzBuzz.
 
     This is the most famous basic programming test of all time!
-
-       "Write a program that prints the numbers from 1 to 100. But for
+    "Write a program that prints the numbers from 1 to 100. But for
         multiples of three print "Fizz" instead of the number and for
         the multiples of five print "Buzz". For numbers which are
         multiples of both three and five print "FizzBuzz"."
@@ -103,8 +102,8 @@ def fizz_buzz() -> List:
     Return a list that has an integer if the number isn't special,
     and a string if it is. E.g.
         [1, 2, 'Fizz', 4, 'Buzz', 'Fizz', 7, 8,
-         'Fizz', 'Buzz',  11, 'Fizz', 13, 14,
-         'FizzBuzz', 16, 17, ...]
+        'Fizz', 'Buzz',  11, 'Fizz', 13, 14,
+        'FizzBuzz', 16, 17, ...]
     """
     fizzBuzzList = []
     for i in range(1, 101):
@@ -126,7 +125,7 @@ def set_it_on_fire(input_string="very naughty boy") -> str:
     e.g. "very naughty boy" should return the string
     "🔥V🔥E🔥R🔥Y🔥 🔥N🔥A🔥U🔥G🔥H🔥T🔥Y🔥 🔥B🔥O🔥Y🔥"
     TIP: strings are pretty much lists of chars.
-         If you list("string") you get ['s', 't', 'r', 'i', 'n', 'g']
+        If you list("string") you get ['s', 't', 'r', 'i', 'n', 'g']
     TIP: consider using the 'join' method in Python.
     TIP: make sure that you have a 🔥 on both ends of the string.
     """
@@ -222,7 +221,10 @@ def random_filler_text(number_of_words=200) -> str:
     words = []
     for i in range(number_of_words):
         words.append(my_dict[random.randint(3, 7)][random.randint(0, 3)])
-    return " ".join(words)
+    return_string = " ".join(words)
+    return_string += "."
+    return_string = return_string[0].upper() + return_string[1:]
+    return return_string
 
 
 def fast_filler(number_of_words=200) -> str:
@@ -241,8 +243,27 @@ def fast_filler(number_of_words=200) -> str:
     """
 
     fname = "dict_cache.json"
+    route = os.path.dirname(os.path.realpath(__file__))
+    fname = os.path.join(route, fname)
+    # try if file exists
+    try:
+        with open(fname, "r") as f:
+            my_dict = json.load(f)
+            # make sure the keys are integers
+            my_dict = {int(k): v for k, v in my_dict.items()}
 
-    return None
+    # if not, create file
+    except:
+        my_dict = make_filler_text_dictionary()
+        with open(fname, "w") as f:
+            json.dump(my_dict, f)
+    words = []
+    for i in range(number_of_words):
+        words.append(my_dict[random.randint(3, 7)][random.randint(0, 3)])
+    return_string = " ".join(words)
+    return_string += "."
+    return_string = return_string[0].upper() + return_string[1:]
+    return return_string
 
 
 if __name__ == "__main__":

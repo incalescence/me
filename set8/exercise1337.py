@@ -5,6 +5,7 @@ This is the same as the setly exercises, fill in the functions,
 and test them to see if they work.
 You have 2 hours.
 """
+
 import json
 import os
 import random
@@ -38,7 +39,7 @@ def int_list_please() -> list:
 
 def string_list_please() -> list:
     """Returns a list of strings, any string are fine."""
-    return ["meow", "woof", "quack"]
+    return ["meow", "woof", "quack", "moo", "baa", "honk"]
 
 
 def dictionary_please() -> dict:
@@ -70,22 +71,14 @@ def one_counter(input_list=[1, 4, 1, 5, 1, 1]) -> int:
     Return an integer.
     TIP: the test will use a different input_list, so don't just return 2
     """
-    count = 0
-    for num in input_list:
-        if num == 1:
-            count += 1
-    return count
+    return input_list.count(1)
 
 
 def n_counter(search_for_this, input_list=[1, 4, 1, 5, 1, 1]) -> int:
     """Count the number of times search_for_this shows up in the input_list.
     Return an integer.
     """
-    count = 0
-    for num in input_list:
-        if num == search_for_this:
-            count += 1
-    return count
+    return input_list.count(search_for_this)
 
 
 def fizz_buzz() -> List:
@@ -107,7 +100,7 @@ def fizz_buzz() -> List:
     """
     fizzBuzzList = []
     for i in range(1, 101):
-        if i % 3 == 0 and i % 5 == 0:
+        if i % 15 == 0:
             fizzBuzzList.append("FizzBuzz")
         elif i % 3 == 0:
             fizzBuzzList.append("Fizz")
@@ -164,7 +157,7 @@ def best_letter_for_pets() -> str:
     import string
 
     the_alphabet = string.ascii_lowercase
-    most_popular_letter = "a"
+    most_popular_letter = "\n"
     for letter in the_alphabet:
         if len(pet_filter(letter)) > len(pet_filter(most_popular_letter)):
             most_popular_letter = letter
@@ -197,13 +190,16 @@ def make_filler_text_dictionary() -> Dict:
     """
 
     url = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength="
-    wd = {}
+    word_dictionary = {}
     for i in range(3, 8):
-        wd[i] = []
+        word_dictionary[i] = []
         for j in range(4):
             r = requests.get(url + str(i))
-            wd[i].append(r.text)
-    return wd
+            if r.status_code is 200:
+                word_dictionary[i].append(r.text)
+            else:
+                word_dictionary[i].append("error requesting word")
+    return word_dictionary
 
 
 def random_filler_text(number_of_words=200) -> str:
@@ -221,10 +217,8 @@ def random_filler_text(number_of_words=200) -> str:
     words = []
     for i in range(number_of_words):
         words.append(my_dict[random.randint(3, 7)][random.randint(0, 3)])
-    return_string = " ".join(words)
-    return_string += "."
-    return_string = return_string[0].upper() + return_string[1:]
-    return return_string
+    return_string = " ".join(words) + "."
+    return return_string[0].upper() + return_string[1:]
 
 
 def fast_filler(number_of_words=200) -> str:
@@ -245,14 +239,10 @@ def fast_filler(number_of_words=200) -> str:
     fname = "dict_cache.json"
     route = os.path.dirname(os.path.realpath(__file__))
     fname = os.path.join(route, fname)
-    # try if file exists
     try:
         with open(fname, "r") as f:
             my_dict = json.load(f)
-            # make sure the keys are integers
             my_dict = {int(k): v for k, v in my_dict.items()}
-
-    # if not, create file
     except:
         my_dict = make_filler_text_dictionary()
         with open(fname, "w") as f:
@@ -260,10 +250,8 @@ def fast_filler(number_of_words=200) -> str:
     words = []
     for i in range(number_of_words):
         words.append(my_dict[random.randint(3, 7)][random.randint(0, 3)])
-    return_string = " ".join(words)
-    return_string += "."
-    return_string = return_string[0].upper() + return_string[1:]
-    return return_string
+    return_string = " ".join(words) + "."
+    return return_string[0].upper() + return_string[1:]
 
 
 if __name__ == "__main__":
